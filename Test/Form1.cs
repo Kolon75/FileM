@@ -16,8 +16,6 @@ namespace Test
     public partial class Form1 : Form
     {
         string status = "Load";
-        string path;
-        string[] strings;
         string fileName;
         string fileValue;
         
@@ -87,14 +85,14 @@ namespace Test
             label_Key.Visible = true;
             textBox_Key.Visible = true;
             button_Key.Visible = true;
-            button_FindFile_Load.Text = "Найти ключ";
+            button_FindFile_Load.Visible = true;
         }
         private void OpenInvisible()
         {
             label_Key.Visible = false;
             textBox_Key.Visible = false;
             button_Key.Visible = false;
-            button_FindFile_Load.Text = "Выйбрать файл";
+            button_FindFile_Load.Visible = false;
         }
         private void Clear()
         {

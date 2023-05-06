@@ -32,7 +32,6 @@
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_FindFile_Load = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
             this.textBoxValue = new System.Windows.Forms.TextBox();
@@ -54,8 +53,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.загрузитьToolStripMenuItem,
             this.открытьToolStripMenuItem,
-            this.удалитьToolStripMenuItem,
-            this.настройкиToolStripMenuItem});
+            this.удалитьToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -83,20 +81,15 @@
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
-            // настройкиToolStripMenuItem
-            // 
-            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.настройкиToolStripMenuItem.Text = "Настройки";
-            // 
             // button_FindFile_Load
             // 
             this.button_FindFile_Load.Location = new System.Drawing.Point(201, 41);
             this.button_FindFile_Load.Name = "button_FindFile_Load";
             this.button_FindFile_Load.Size = new System.Drawing.Size(97, 23);
             this.button_FindFile_Load.TabIndex = 1;
-            this.button_FindFile_Load.Text = "Выбрать файл";
+            this.button_FindFile_Load.Text = "Найти ключ";
             this.button_FindFile_Load.UseVisualStyleBackColor = true;
+            this.button_FindFile_Load.Visible = false;
             this.button_FindFile_Load.Click += new System.EventHandler(this.button_FindFile_Load_Click);
             // 
             // buttonLoad
@@ -229,7 +222,6 @@
         private System.Windows.Forms.Button buttonLoad;
         private System.Windows.Forms.TextBox textBoxValue;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialogLoad;
         private System.Windows.Forms.OpenFileDialog openFileDialogOpen;
         private System.Windows.Forms.TextBox textBoxFileName;
