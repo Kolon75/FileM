@@ -47,10 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\File.cs" />
-    <Compile Include="Moduls\BD.cs" />
-    <Compile Include="Moduls\Connection.cs" />
-    <Compile Include="Moduls\FileMenegment.cs" />
-    <Compile Include="Moduls\Place.cs" />
+    <Compile Include="Modules\DataBase.cs" />
+    <Compile Include="Modules\Connection.cs" />
+    <Compile Include="Modules\FileManagement.cs" />
+    <Compile Include="Modules\StoragePlace.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

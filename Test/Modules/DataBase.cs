@@ -9,7 +9,7 @@ using Test.Classes;
 
 namespace Test.Moduls
 {
-    internal class BD
+    internal class DataBase
     {
         public List<File> LoadBD()
         {
@@ -49,28 +49,28 @@ namespace Test.Moduls
             connection.Open();
             SqlTransaction transaction = connection.BeginTransaction();
             SqlCommand cmd = connection.CreateCommand();
-            //try
-            //{
-                
+            try
+            {
+
                 cmd.Transaction = transaction;
 
                 cmd.CommandText = "use [FileMeneger] INSERT INTO [dbo].[FileInfo] ([Key],[FileName],[Link]) VALUES (@Key,@Name,@Link)";
                 cmd.Parameters.AddWithValue("@Key", MaxKey());
                 cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Link", Place.PlacePath + name + ".txt");
+                cmd.Parameters.AddWithValue("@Link", StoragePlace.PlacePath + name + ".txt");
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Файл добавлен в бд!");
                 transaction.Commit();
-            //}
-            //catch (Exception)
-            //{
+            }
+            catch (Exception)
+            {
 
-            //    MessageBox.Show("Файл не попал в бд"); 
-            //}
-            //finally
-            //{
-            //    connection.Close();
-            //}
+                MessageBox.Show("Файл не попал в бд");
+            }
+            finally
+            {
+                connection.Close();
+            }
 
         }
         public void SaveBD(int key, string name, string link )

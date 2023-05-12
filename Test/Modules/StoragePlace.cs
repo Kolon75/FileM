@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test.Classes
 {
-    static public class Place
+    static public class StoragePlace
     {
         static public string PlacePath = "D:\\Test\\";
     }

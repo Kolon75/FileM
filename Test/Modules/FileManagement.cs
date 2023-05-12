@@ -9,13 +9,13 @@ using Test.Classes;
 
 namespace Test.Moduls
 {
-    internal class FileMenegment
+    internal class FileManagement
     {
         public void SaveFiles(string name, string value)
         {
             try 
             { 
-            System.IO.File.AppendAllText(Place.PlacePath+name+".txt", value);
+            System.IO.File.AppendAllText(StoragePlace.PlacePath+name+".txt", value);
             MessageBox.Show("Файл добавлен в память!");
             
             }

@@ -61,9 +61,8 @@ namespace Test
             bool ItsUnic = true;
             fileName = textBoxFileName.Text;
             fileValue = textBoxValue.Text;
-            BD bdOpen = new BD();
-            FileMenegment fileMenegmentOpen = new FileMenegment();
-            files = bdOpen.LoadBD();
+            DataBase dataBaseOpen = new DataBase();
+            files = dataBaseOpen.LoadBD();
             for (int i = 0; i < files.Count; i++)
             {
                 if (fileName == files[i].Name)
@@ -103,8 +102,8 @@ namespace Test
         private void buttonLoad_Click(object sender, EventArgs e)
         {
 
-            BD bd;
-            FileMenegment fileMenegment; 
+            DataBase dataBase;
+            FileManagement fileManagement; 
             fileName = textBoxFileName.Text;
             fileValue = textBoxValue.Text;
             switch (status)
@@ -112,9 +111,9 @@ namespace Test
                 case "Load":
                     bool ItsName = true;
                     bool ItsValue = true;
-                    bd = new BD();
-                    fileMenegment = new FileMenegment();
-                    files = bd.LoadBD();
+                    dataBase = new DataBase();
+                    fileManagement = new FileManagement();
+                    files = dataBase.LoadBD();
                     for (int i = 0; i < files.Count; i++)
                     {
                         if (fileName == files[i].Name)
@@ -126,27 +125,27 @@ namespace Test
                     }
                     for (int i = 0; i < files.Count; i++)
                     {
-                        if (fileValue == fileMenegment.LoadFiles(files[i].Link) && ItsName)
+                        if (fileValue == fileManagement.LoadFiles(files[i].Link) && ItsName)
                         {   
                             ItsValue = false;
                             MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");
-                            bd.SaveBD(files[i].Key, fileName, files[i].Link);
+                            dataBase.SaveBD(files[i].Key, fileName, files[i].Link);
                             break;
                         }
 
                     }
                     if(ItsName && ItsValue)
                     {
-                        bd.SaveBD(fileName);
-                        fileMenegment.SaveFiles(fileName, fileValue);
+                        dataBase.SaveBD(fileName);
+                        fileManagement.SaveFiles(fileName, fileValue);
                     }
                 break;
 
                 case "Delete":
-                    
-                    bd = new BD();
-                    fileMenegment = new FileMenegment();
-                    files = bd.LoadBD();
+
+                    dataBase = new DataBase();
+                    fileManagement = new FileManagement();
+                    files = dataBase.LoadBD();
                     try
                     {
                         for (int i = 0; i < files.Count; i++)
@@ -156,9 +155,9 @@ namespace Test
                                 
                                 if (files[i].Last(files[i],i))
                                 {
-                                    fileMenegment.DeleteFiles(files[i].Link);
+                                    fileManagement.DeleteFiles(files[i].Link);
                                 }
-                                bd.DeleteBD(files[i].Name);
+                                dataBase.DeleteBD(files[i].Name);
 
                             }
 
@@ -178,7 +177,7 @@ namespace Test
         {
             try
             {
-                BD bdOpen = new BD();
+                DataBase bdOpen = new DataBase();
                 files = bdOpen.LoadBD();
                 using (StreamReader reader = new StreamReader(bdOpen.LoadPath(int.Parse(textBox_Key.Text))))
                 {

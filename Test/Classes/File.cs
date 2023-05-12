@@ -23,9 +23,9 @@ namespace Test.Classes
         public bool Last(File file, int p)
         {
             List<Classes.File> files = new List<Classes.File>();
-            BD bd = new BD();
+            DataBase dataBase = new DataBase();
             bool last = false;
-            files = bd.LoadBD();
+            files = dataBase.LoadBD();
             for (int i = 0; i < files.Count; i++)
             {
                 if (file.Link == files[i].Link && p == i)
@@ -38,7 +38,6 @@ namespace Test.Classes
                     break;
                 }
             }
-            bool aa = last;
 
             return last;
         }
