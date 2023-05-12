@@ -16,8 +16,7 @@ namespace Test
     public partial class Form1 : Form
     {
         string status = "Load";
-        string fileName;
-        string fileValue;
+
         
         List<Classes.File> files = new List<Classes.File>();
         public Form1()
@@ -59,13 +58,11 @@ namespace Test
         private void button_FindFile_Load_Click(object sender, EventArgs e)
         {
             bool ItsUnic = true;
-            fileName = textBoxFileName.Text;
-            fileValue = textBoxValue.Text;
             DataBase dataBaseOpen = new DataBase();
             files = dataBaseOpen.LoadBD();
             for (int i = 0; i < files.Count; i++)
             {
-                if (fileName == files[i].Name)
+                if (textBoxFileName.Text == files[i].Name)
                 {
                     MessageBox.Show($"Файл с таким именем имеет ключ {files[i].Key}");
                     textBox_Key.Text = files[i].Key.ToString();
@@ -104,8 +101,6 @@ namespace Test
 
             DataBase dataBase;
             FileManagement fileManagement; 
-            fileName = textBoxFileName.Text;
-            fileValue = textBoxValue.Text;
             switch (status)
             {
                 case "Load":
@@ -116,7 +111,7 @@ namespace Test
                     files = dataBase.LoadBD();
                     for (int i = 0; i < files.Count; i++)
                     {
-                        if (fileName == files[i].Name)
+                        if (textBoxFileName.Text == files[i].Name)
                         {
                             ItsName = false;
                             MessageBox.Show($"Такое название файла уже используется");
@@ -125,19 +120,19 @@ namespace Test
                     }
                     for (int i = 0; i < files.Count; i++)
                     {
-                        if (fileValue == fileManagement.LoadFiles(files[i].Link) && ItsName)
+                        if (textBoxValue.Text == fileManagement.LoadFiles(files[i].Link) && ItsName)
                         {   
                             ItsValue = false;
                             MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");
-                            dataBase.SaveBD(files[i].Key, fileName, files[i].Link);
+                            dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link);
                             break;
                         }
 
                     }
                     if(ItsName && ItsValue)
                     {
-                        dataBase.SaveBD(fileName);
-                        fileManagement.SaveFiles(fileName, fileValue);
+                        dataBase.SaveBD(textBoxFileName.Text);
+                        fileManagement.SaveFiles(textBoxFileName.Text, textBoxValue.Text);
                     }
                 break;
 
@@ -150,7 +145,7 @@ namespace Test
                     {
                         for (int i = 0; i < files.Count; i++)
                         {
-                            if (fileName == files[i].Name)
+                            if (textBoxFileName.Text == files[i].Name)
                             {
                                 
                                 if (files[i].Last(files[i],i))
