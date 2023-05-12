@@ -43,7 +43,7 @@ namespace Test.Moduls
             }
 
         }
-        public void SaveBD(string name)
+        public bool SaveBD(string name)
         {
             SqlConnection connection = new SqlConnection(Connection.connString);
             connection.Open();
@@ -61,11 +61,13 @@ namespace Test.Moduls
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Файл добавлен в бд!");
                 transaction.Commit();
+
+                return true;
             }
             catch (Exception)
             {
-
-                MessageBox.Show("Файл не попал в бд");
+                MessageBox.Show("Файл с таким именем уже существует");
+                return false;
             }
             finally
             {
@@ -73,7 +75,7 @@ namespace Test.Moduls
             }
 
         }
-        public void SaveBD(int key, string name, string link )
+        public bool SaveBD(int key, string name, string link )
         {
             SqlConnection connection = new SqlConnection(Connection.connString);
             connection.Open();
@@ -91,11 +93,13 @@ namespace Test.Moduls
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Файл добавлен в бд!");
                 transaction.Commit();
+
+                return true;
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Файл не попал в бд");
+                return false;
             }
             finally
             {

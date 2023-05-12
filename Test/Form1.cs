@@ -104,35 +104,29 @@ namespace Test
             switch (status)
             {
                 case "Load":
-                    bool ItsName = true;
                     bool ItsValue = true;
                     dataBase = new DataBase();
                     fileManagement = new FileManagement();
                     files = dataBase.LoadBD();
                     for (int i = 0; i < files.Count; i++)
                     {
-                        if (textBoxFileName.Text == files[i].Name)
+                        if (textBoxValue.Text == fileManagement.LoadFiles(files[i].Link) && textBoxFileName.Text != files[i].Name)
                         {
-                            ItsName = false;
-                            MessageBox.Show($"Такое название файла уже используется");
-                        }
-
-                    }
-                    for (int i = 0; i < files.Count; i++)
-                    {
-                        if (textBoxValue.Text == fileManagement.LoadFiles(files[i].Link) && ItsName)
-                        {   
-                            ItsValue = false;
-                            MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");
-                            dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link);
+                            if (dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link))
+                            {
+                                ItsValue = false;
+                                MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");
+                            }
                             break;
                         }
 
                     }
-                    if(ItsName && ItsValue)
+                    if(ItsValue)
                     {
-                        dataBase.SaveBD(textBoxFileName.Text);
-                        fileManagement.SaveFiles(textBoxFileName.Text, textBoxValue.Text);
+                        if (dataBase.SaveBD(textBoxFileName.Text))
+                        {
+                            fileManagement.SaveFiles(textBoxFileName.Text, textBoxValue.Text);
+                        }
                     }
                 break;
 
