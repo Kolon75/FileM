@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{73698EDA-ECB3-4C41-ABD8-CF6E1046C2D1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>t</RootNamespace>
-    <AssemblyName>t</AssemblyName>
+    <RootNamespace>FileManager</RootNamespace>
+    <AssemblyName>FileManager</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
