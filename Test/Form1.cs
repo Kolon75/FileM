@@ -16,8 +16,7 @@ namespace FileManager
     public partial class Form1 : Form
     {
         string status = "Load";
-
-        
+      
         List<Classes.File> files = new List<Classes.File>();
         public Form1()
         {
