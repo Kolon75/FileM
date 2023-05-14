@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Test.Classes;
+using Test.Modules;
 using Test.Moduls;
 
 namespace Test
@@ -98,7 +99,7 @@ namespace Test
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-
+            Hash hash = new Hash()
             DataBase dataBase;
             FileManagement fileManagement; 
             switch (status)
@@ -112,7 +113,7 @@ namespace Test
                     {
                         if (textBoxValue.Text == fileManagement.LoadFiles(files[i].Link) && textBoxFileName.Text != files[i].Name)
                         {
-                            if (dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link))
+                            if (dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link, ))
                             {
                                 ItsValue = false;
                                 MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");

@@ -19,14 +19,14 @@ namespace Test.Moduls
             try
             {
                 connection.Open();
-                string sqlExp = "use [FileMeneger] select [Key],[FileName],[Link] from [dbo].[FileInfo]";
+                string sqlExp = "use [FileMeneger] select [Key],[FileName],[Link],[Hash] from [dbo].[FileInfo]";
                 SqlCommand command = new SqlCommand(sqlExp, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        files.Add(new File((int)reader[0], reader[1].ToString(), reader[2].ToString()));
+                        files.Add(new File((int)reader[0], reader[1].ToString(), reader[2].ToString(), reader[3].ToString()));
                     }
                 }
                 reader.Close();
@@ -43,7 +43,7 @@ namespace Test.Moduls
             }
 
         }
-        public bool SaveBD(string name)
+        public bool SaveBD(string name, string hash)
         {
             SqlConnection connection = new SqlConnection(Connection.connString);
             connection.Open();
@@ -54,17 +54,18 @@ namespace Test.Moduls
 
                 cmd.Transaction = transaction;
 
-                cmd.CommandText = "use [FileMeneger] INSERT INTO [dbo].[FileInfo] ([Key],[FileName],[Link]) VALUES (@Key,@Name,@Link)";
+                cmd.CommandText = "use [FileMeneger] INSERT INTO [dbo].[FileInfo] ([Key],[FileName],[Link],[Hash]) VALUES (@Key,@Name,@Link,@Hash)";
                 cmd.Parameters.AddWithValue("@Key", MaxKey());
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@Link", StoragePlace.PlacePath + name + ".txt");
+                cmd.Parameters.AddWithValue("@Hash", hash);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Файл добавлен в бд!");
                 transaction.Commit();
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Файл с таким именем уже существует");
                 return false;
@@ -75,7 +76,7 @@ namespace Test.Moduls
             }
 
         }
-        public bool SaveBD(int key, string name, string link )
+        public bool SaveBD(int key, string name, string link, string hash)
         {
             SqlConnection connection = new SqlConnection(Connection.connString);
             connection.Open();
@@ -86,10 +87,11 @@ namespace Test.Moduls
 
                 cmd.Transaction = transaction;
 
-                cmd.CommandText = "use [FileMeneger] INSERT INTO [dbo].[FileInfo] ([Key],[FileName],[Link]) VALUES (@Key,@Name,@Link)";
+                cmd.CommandText = "use [FileMeneger] INSERT INTO [dbo].[FileInfo] ([Key],[FileName],[Link],[Hash]) VALUES (@Key,@Name,@Link,@Hash)";
                 cmd.Parameters.AddWithValue("@Key", key);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@Link", link);
+                cmd.Parameters.AddWithValue("@Hash", hash);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Файл добавлен в бд!");
                 transaction.Commit();

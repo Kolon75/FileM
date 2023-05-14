@@ -9,16 +9,18 @@ namespace Test.Classes
 {
     internal class File
     {
-        public File(int key, string name, string link)
+        public File(int key, string name, string link, string hash)
         {
             Key = key;
             Name = name;
             Link = link;
+            Hash = hash;
         }
 
         public int Key { get; set; }
         public string Name { get; set; }
         public string Link { get; set; }
+        public string Hash { get; set; }
 
         public bool Last(File file, int p)
         {
