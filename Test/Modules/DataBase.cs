@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Test.Classes;
+using FileManager.Classes;
 
-namespace Test.Modules
+namespace FileManager.Modules
 {
     internal class DataBase
     {

@@ -1,4 +1,4 @@
-﻿namespace Test
+﻿namespace FileManager
 {
     partial class Form1
     {

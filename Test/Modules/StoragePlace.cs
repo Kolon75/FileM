@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Classes
+namespace FileManager.Classes
 {
     static public class StoragePlace
     {

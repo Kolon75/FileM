@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Test.Classes;
-using Test.Modules;
+using FileManager.Classes;
+using FileManager.Modules;
 
-namespace Test
+namespace FileManager
 {
     public partial class Form1 : Form
     {

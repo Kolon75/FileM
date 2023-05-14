@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Modules;
+using FileManager.Modules;
 
-namespace Test.Classes
+namespace FileManager.Classes
 {
     internal class File
     {
