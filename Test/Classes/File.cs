@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Moduls;
+using Test.Modules;
 
 namespace Test.Classes
 {

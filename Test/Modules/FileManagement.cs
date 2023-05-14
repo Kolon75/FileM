@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Test.Classes;
 
-namespace Test.Moduls
+namespace Test.Modules
 {
     internal class FileManagement
     {

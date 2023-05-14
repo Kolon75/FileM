@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Test.Classes;
 using Test.Modules;
-using Test.Moduls;
 
 namespace Test
 {
@@ -99,32 +98,40 @@ namespace Test
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            Hash hash = new Hash()
+            Hash hash;
             DataBase dataBase;
             FileManagement fileManagement; 
             switch (status)
             {
                 case "Load":
                     bool ItsValue = true;
+                    hash = new Hash();
                     dataBase = new DataBase();
                     fileManagement = new FileManagement();
+                    int actualKey = dataBase.MinKey();
                     files = dataBase.LoadBD();
                     for (int i = 0; i < files.Count; i++)
                     {
-                        if (textBoxValue.Text == fileManagement.LoadFiles(files[i].Link) && textBoxFileName.Text != files[i].Name)
+                        if (actualKey == files[i].Key)
                         {
-                            if (dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link, ))
+                            actualKey++;
+                            if (hash.GetHash(textBoxValue.Text) == files[i].Hash)
                             {
-                                ItsValue = false;
-                                MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");
+                                if (textBoxValue.Text == fileManagement.LoadFiles(files[i].Link) && textBoxFileName.Text != files[i].Name)
+                                {
+                                    if (dataBase.SaveBD(files[i].Key, textBoxFileName.Text, files[i].Link, hash.GetHash(textBoxValue.Text)))
+                                    {
+                                        ItsValue = false;
+                                        MessageBox.Show($"Содержимое этого файла уже имеется в файле под номером {files[i].Key}");
+                                    }
+                                    break;
+                                }
                             }
-                            break;
                         }
-
                     }
                     if(ItsValue)
                     {
-                        if (dataBase.SaveBD(textBoxFileName.Text))
+                        if (dataBase.SaveBD(textBoxFileName.Text, hash.GetHash(textBoxValue.Text)))
                         {
                             fileManagement.SaveFiles(textBoxFileName.Text, textBoxValue.Text);
                         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Test.Classes;
 
-namespace Test.Moduls
+namespace Test.Modules
 {
     internal class DataBase
     {
@@ -55,7 +55,7 @@ namespace Test.Moduls
                 cmd.Transaction = transaction;
 
                 cmd.CommandText = "use [FileMeneger] INSERT INTO [dbo].[FileInfo] ([Key],[FileName],[Link],[Hash]) VALUES (@Key,@Name,@Link,@Hash)";
-                cmd.Parameters.AddWithValue("@Key", MaxKey());
+                cmd.Parameters.AddWithValue("@Key", MaxKey()+1);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@Link", StoragePlace.PlacePath + name + ".txt");
                 cmd.Parameters.AddWithValue("@Hash", hash);
@@ -119,13 +119,31 @@ namespace Test.Moduls
                 SqlCommand command = new SqlCommand(sqlExp, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
-                return (int)reader[0] + 1;
+                return (int)reader[0];
             }
             catch 
             {
-                return 1;
+                return 0;
             }
             
+        }
+        public int MinKey()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(Connection.connString);
+                connection.Open();
+                string sqlExp = "use [FileMeneger] select min([Key]) from [dbo].[FileInfo]";
+                SqlCommand command = new SqlCommand(sqlExp, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                return (int)reader[0];
+            }
+            catch
+            {
+                return 0;
+            }
+
         }
         public string LoadPath(int key)
         {
